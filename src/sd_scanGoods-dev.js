@@ -1,5 +1,6 @@
 // require('./sd2.js')
 
+import axios from 'axios';
 // const { aaa, aaa2 } = require('./inin')
 
 const {
@@ -48,6 +49,19 @@ const {
 } = require('./inin/driver')
 
 const { priceNormalizator, onlyNumber } = require('./inin/math')
+
+
+
+// Want to use async/await? Add the `async` keyword to your outer function/method.
+async function telegas(msg) {
+    try {
+        const response = await axios.get('https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg=' + msg);
+        //   await loadPage(telega, 'https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg=парсинг 1: старт')
+        console.log(response);
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 
 
@@ -206,13 +220,14 @@ async function start() {
 
 
     var page = driverConnect()
-    var telega = driverConnect()
+        // var telega = driverConnect()
 
 
     try {
         const connection = await mysqlConnect('parser1', 'root', '123456')
 
-        await loadPage(telega, 'https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg=парсинг 1: старт')
+        // await loadPage(telega, 'https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg=парсинг 1: старт')
+        telegas('парсинг 1: старт')
 
         try {
             let step = 0
@@ -282,7 +297,8 @@ async function start() {
                 // console.log('идём с ледуюющему товару');
 
                 // await loadPage(telega, 'https://api.uralweb.info/telegram.php?s=1&domain=parser.php-cat.com&msg=ок + ' + good.name)
-                await loadPage(telega, 'https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg=ok ' + good.name)
+                // await loadPage(telega, 'https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg=ok ' + good.name)
+                telegas('ok ' + good.name)
 
                 continue
 
@@ -417,12 +433,14 @@ async function start() {
     // ошибка подклчения к бд
     catch (error) {
         // await loadPage(telega, 'https://api.uralweb.info/telegram.php?s=1&domain=aa.s1.php-cat.com&msg=парсинг 1: ошибка конекта к БД')
-        await loadPage(telega, 'https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=aa.s1.php-cat.com&msg=парсинг 1: ошибка конекта к БД')
+        // await loadPage(telega, 'https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=aa.s1.php-cat.com&msg=парсинг 1: ошибка конекта к БД')
+        telegas('парсинг 1: ошибка конекта к БД')
 
     }
 
 }
 
-loadPage(telega, 'https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg=01 pars: старт')
+// loadPage(telega, 'https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg=01 pars: старт')
+telegas('01 pars: старт')
 
 start()
