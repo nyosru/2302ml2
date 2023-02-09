@@ -22,8 +22,8 @@ export const connect = () => {
     const page = new Builder()
         .forBrowser('chrome')
         .setChromeOptions(chromeOptios)
-        // .usingServer('http://localhost:4444/wd/hub/')
-        .usingServer('http://selenoid:4444/wd/hub/')
+        .usingServer('http://localhost:4444/wd/hub/')
+        // .usingServer('http://selenoid:4444/wd/hub/')
         .build()
     return page
 }
