@@ -63,9 +63,7 @@ async function telegas(msg) {
     }
 }
 
-
 telegas('привет конфет')
-
 
 // import fetch from 'node-fetch';
 
@@ -445,4 +443,4 @@ async function start() {
 // loadPage(telega, 'https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg=01 pars: старт')
 telegas('01 pars: старт')
 
-start()
+// start()
