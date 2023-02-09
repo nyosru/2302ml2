@@ -50,10 +50,8 @@ const {
 
 const { priceNormalizator, onlyNumber } = require('./inin/math')
 
-
-
 // Want to use async/await? Add the `async` keyword to your outer function/method.
-async function telegas(msg) {
+const telegas = async(msg) => {
     try {
         const response = await axios.get('https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg=' + msg);
         //   await loadPage(telega, 'https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg=парсинг 1: старт')
@@ -65,163 +63,9 @@ async function telegas(msg) {
 
 telegas('привет конфет')
 
-// import fetch from 'node-fetch';
-
-
-// var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-// // var xhr = new XMLHttpRequest();
-// var xhr = new XMLHttpRequest();
-
-// var body = 'name=' + encodeURIComponent(name) +
-//     '&surname=' + encodeURIComponent(surname);
-
-// xhr.open("POST", '/submit', true);
-// xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-// // xhr.onreadystatechange = ...;
-
-// xhr.send(body);
-
-
-
-
-
-
-
-
-
-
-// // const axios = require('axios/dist/browser/axios.cjs');
-// const axios = require('axios');
-// console.log('axios', axios);
-
-
-// // const express = require('express'),
-// //     app = express(),
-// request = require('request')
-
-// // // const host = '127.0.0.1'
-// // // const port = 7000
-
-// // // app.get('/', (req, res) => {
-// request(
-//         'https://api.uralweb.info/telegram.php?s=1&msg=654654654',
-//         (err, response, body) => {
-//             if (err) return res.status(500).send({ message: err })
-
-//             return res.send(body)
-//         }
-//     )
-//     // })
-
-// // app.listen(port, host, () =>
-// //     console.log(`Server listens http://${host}:${port}`)
-// // )
-
-
-
-
-// const http = require('node:http');
-
-// const options = {
-//     host: '127.0.0.1',
-//     port: 8080,
-//     path: '/length_request',
-// };
-
-// // Make a request
-// const req = http.request(options);
-// req.end();
-
-// req.on('information', (info) => {
-//     console.log(`Got information prior to main response: ${info.statusCode}`);
-// });
-
-
-
-
-
-
-
-
-// // import request from 'request'
-// const request = require('request-promise')
-
-// const options = {
-//     method: 'POST',
-//     uri: 'https://api.uralweb.info/telegram.php',
-//     body: {
-//         // foo: 'bar'
-//         s: 1,
-//         msg: 'Привет буфет'
-//     },
-//     json: true
-//         // Тело запроса приводится к формату JSON автоматически
-// }
-
-// request(options)
-//     .then(function(response) {
-//         // Запрос был успешным, используйте объект ответа как хотите
-//         console.log(111);
-//     })
-//     .catch(function(err) {
-//         // Произошло что-то плохое, обработка ошибки
-//         console.log(222);
-//     })
-
-// request.post({
-//         url: 'https://api.uralweb.info/telegram.php',
-//         form: {
-//             s: 1,
-//             msg: 'Привет буфет'
-//         }
-//     },
-//     (err, response, body) => {
-//         // if (err) return res.status(500).send({ message: err })
-//         // return res.send(body)
-//         // console.log( '222' , res.send(body)
-//         console.log('222', res.send(body), body)
-//     }
-// )
-
-// var xhr = new XMLHttpRequest();
-
-// var body = 's=1&msg=' + encodeURIComponent('Привет буфет')
-//     // +
-//     //     '&surname=' + encodeURIComponent(surname);
-
-// // xhr.open("POST", '/submit', true);
-// xhr.open("GET", 'https://api.uralweb.info/telegram.php', true);
-// xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-// // xhr.onreadystatechange = ...;
-// xhr.send(body);
-
 async function start() {
 
-
-    // const response = await fetch('https://github.com/');
-    // const body = await response.text();
-    // console.log(body);
-
-    // // Make a request for a user with a given ID
-    // await axios.get('https://api.uralweb.info/telegram.php?s=1&msg=asdasdasd')
-    //     .then(function(response) {
-    //         // handle success
-    //         console.log(response);
-    //     })
-    //     .catch(function(error) {
-    //         // handle error
-    //         console.log(error);
-    //     })
-    //     .then(function() {
-    //         // always executed
-    //     });
-
-
-
     var page = driverConnect()
-        // var telega = driverConnect()
-
 
     try {
         const connection = await mysqlConnect('parser1', 'root', '123456')
