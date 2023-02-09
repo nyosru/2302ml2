@@ -1,0 +1,302 @@
+version: '3'
+
+services:
+
+  # nginx:
+  #   image: nginx
+  #   container_name: ng
+  #   ports:
+  #     - "80:80"
+  #     - "433:433"
+  #   volumes: 
+  #   - ./nginx/my.conf:/etc/nginx/conf.d/default.conf
+  #   # - ./../app:/app/web
+  #   # - ./nginx/ssl:/etc/ssl/certs
+  #   # - ./nginx/log:/var/log/nginx
+  #   links:
+  #     - la1
+  #   depends_on:
+  #     - la1
+  #   networks:
+  #     - selenoid
+
+  # la1:
+  #   container_name: la1
+  #   build: ./web
+  #   restart: always
+  #   environment:
+  #     - APACHE_RUN_USER=www-data
+  #     # - APACHE_DOCUMENT_ROOT=/var/www/html/public
+  #     # - post_max_size=200M
+  #     # - upload_max_filesize=200M
+  #   volumes:
+  #     - ${APP_PATH_HOST}:${APP_PATH_CONTAINER}
+  #   ports:
+  #     - 8081:80
+  #     # - 433:433
+  #     # - 8081:80
+  #   working_dir: ${APP_PATH_CONTAINER}
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - se
+
+
+  p1:
+    container_name: p1
+    build: ./py
+    restart: always
+    # environment:
+    #   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+    # variables:
+      # - APACHE_RUN_USER=www-data
+      # - APACHE_DOCUMENT_ROOT=/var/www/html/public
+      # - post_max_size=200M
+      # - upload_max_filesize=200M
+    volumes:
+      - ${APP_PATH_HOST}:${APPpy_PATH_CONTAINER}
+    ports:
+      - 80:80
+      # - 433:433
+      # - 8081:80
+    working_dir: ${APPpy_PATH_CONTAINER}
+    depends_on:
+      - db
+    networks:
+      - se
+
+  # la1py:
+  #   container_name: la1py
+  #   build: ./web-py
+  #   # environment:
+  #   #   - APACHE_RUN_USER=www-data
+  #   #   # - APACHE_DOCUMENT_ROOT=/var/www/html/public
+  #   #   # - post_max_size=200M
+  #   #   # - upload_max_filesize=200M
+  #   # volumes:
+  #   #   - ${APP_PATH_HOST}:${APP_PATH_CONTAINER}/pyt
+  #   # ports:
+  #   #   - 80:80
+  #   #   - 433:433
+  #   #   # - 8081:80
+  #   # working_dir: ${APP_PATH_CONTAINER}
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - selenoid
+
+
+  # laravel3:
+  #   container_name: la3
+  #   build: ./web3
+  #   environment:
+  #     - APACHE_RUN_USER=www-data
+  #     # - post_max_size=200M
+  #     # - upload_max_filesize=200M
+  #   volumes:
+  #     - ${APP_PATH_HOST3}:${APP_PATH_CONTAINER}
+  #   ports:
+  #     # - 80:80
+  #     - 8092:80
+  #   working_dir: ${APP_PATH_CONTAINER}
+  #   networks:
+  #     - selenoid
+
+
+
+  # # web_catalog:
+
+  # #   container_name: ss_web_catalog
+  # #   build: ./web_catalog
+
+  # #   environment:
+  # #     - APACHE_RUN_USER=www-data
+  # #     - post_max_size=200M
+  # #     - upload_max_filesize=200M
+  # #   volumes:
+  # #     - ${APP_PATH_HOST_CATALOG}:${APP_PATH_CONTAINER}
+  # #   ports:
+  # #     # - 8080:80
+  # #     - 8082:80
+  # #   working_dir: ${APP_PATH_CONTAINER}
+
+  # python:
+
+  #   image: python:3.9-slim
+  #   container_name: ss_py
+
+  db:
+
+    image: mariadb:latest
+    container_name: ss_db
+
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+    volumes:
+      - ${DB_PATH_HOST}:/var/lib/mysql
+    ports:
+      - 3306:3306
+    networks:
+      - se
+
+#++
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links: 
+      - db:db
+    ports:
+      - 6060:80
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      UPLOAD_LIMIT: 300M
+    depends_on:
+      - db
+    networks:
+      - se
+
+#++
+  # elastic:
+  #   image: docker.elastic.co/elasticsearch/elasticsearch:7
+  #   # links: 
+  #   #   - db:db
+  #   ports:
+  #     - 9200:9200
+  #     - 9300:9300
+  #   environment:
+  #     discovery.type: single-node
+  #     # MYSQL_ROOT_PASSWORD: 123456
+  #     # UPLOAD_LIMIT: 300M
+  #   # depends_on:
+  #     # - db
+  #   networks:
+  #     - selenoid
+#++
+  # adminer:
+
+  #   image: adminer
+  #   container_name: ss_adminer
+
+  #   restart: always
+  #   ports:
+  #     - 6080:8080
+
+  #   working_dir: ${APP_PATH_CONTAINER}
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - selenoid
+
+
+
+networks:
+  se:
+    driver: bridge
+    # ipam:
+    #   config:
+    #     - subnet: 172.20.0.0/16
+    
+
+
+  # # composer:
+
+  # #   image: composer:1.4
+  # #   container_name: ss_composer
+
+  # #   volumes:
+  # #     - ${APP_PATH_HOST}:${APP_PATH_CONTAINER}
+  # #   working_dir: ${APP_PATH_CONTAINER}
+  # #   # command: 
+  # #     # -  composer install
+
+
+
+
+
+
+  # #Redis
+  # redis:
+  #     image: 'redis:alpine'
+  #     ports:
+  #         - "6379:6379"
+  # #PostgreSQL        
+  # postgres:
+  #     container_name: postgres_container
+  #     image: postgres
+  #     hostname: postgres
+  #     environment:
+  #         POSTGRES_DB: postgres
+  #         POSTGRES_USER: postgres
+  #         POSTGRES_PASSWORD: secret
+  #         PGDATA: /data/postgres
+  #     volumes:
+  #         - postgres:/data/postgres
+  #     ports:
+  #         - "5432:5432"
+  #     networks:
+  #         - postgres
+  #     restart: unless-stopped
+
+  # pgadmin:
+  #     container_name: pgadmin_container
+  #     image: dpage/pgadmin4
+  #     environment:
+  #         PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+  #         PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+  #     volumes:
+  #         - pgadmin:/root/.pgadmin
+  #     ports:
+  #         - "${PGADMIN_PORT:-5050}:80"
+  #     networks:
+  #         - postgres
+  #     restart: unless-stopped  
+  #     depends_on: 
+  #         - postgres     
+  # #RabbitMQ
+  # rabbit:
+  #     image: "rabbitmq:3-management"
+  #     hostname: "rabbit"
+  #     environment:
+  #         RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+  #         RABBITMQ_DEFAULT_USER: "rabbitmq"
+  #         RABBITMQ_DEFAULT_PASS: "rabbitmq"
+  #         RABBITMQ_DEFAULT_VHOST: "/"
+  #     ports:
+  #         - "15672:15672"
+  #         - "5672:5672"
+  #     labels:
+  #         NAME: "rabbitmq"    
+  #     networks:
+  #         - selenoid     
+  # #ElasticSearch
+  # es01:
+  #     # image: docker.elastic.co/elasticsearch/elasticsearch:7.0.1
+  #     # image: docker.elastic.co/elasticsearch/elasticsearch
+  #     # image: elasticsearch:7.17.5
+  #     image: elasticsearch:latest
+  #     container_name: es01
+  #     environment:
+  #         - cluster.initial_master_nodes=es01
+  #     ulimits:
+  #         memlock:
+  #             soft: -1
+  #             hard: -1
+  #     ports:
+  #         - "9200:9200"
+  #         - "9300:9300"
+  #     networks:
+  #         - selenoid
+
+  # kibana:
+  #     image: docker.elastic.co/kibana/kibana:6.2.4
+  #     container_name: kibana
+  #     ports:
+  #         - "5601:5601"
+  #     depends_on:
+  #         - es01
+  #     networks:
+  #         - selenoid   
+
+
+
+
