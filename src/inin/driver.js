@@ -846,7 +846,7 @@ export const SDGoToCat = async(page, gogoE, goToCatLink, step = 1) => {
     }
 }
 
-export const creatScreenshot = async(page, toImg = './img/11.png') => {
+export const creatScreenshot = async(page, toImg = '/root/ml/dist/img/11.png') => {
     try {
         await page.takeScreenshot().then(function(image, err) {
             require('fs').writeFile(toImg, image, 'base64', function(err) {
