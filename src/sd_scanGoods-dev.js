@@ -157,6 +157,7 @@ async function start() {
         console.log('')
         await mysqlExit(connection)
         await driverExit(page)
+        await driverExit(page3)
         console.log('')
         console.log('')
 
