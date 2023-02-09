@@ -1,6 +1,7 @@
 // require('./sd2.js')
 
 // import axios from 'axios';
+// const axios = require('axios');
 // const { aaa, aaa2 } = require('./inin')
 
 const {
@@ -52,30 +53,65 @@ const { priceNormalizator, onlyNumber } = require('./inin/math')
 
 // const https = require('node:https');
 
-
+// var https = require("https");
 
 // var http = require('http');
 // const request = require('request');
 // var page3 = driverConnect()
 
+
+// var xhr = new XMLHttpRequest()
+// var XMLHttpRequest = require('xhr2');
+// var xhr = new XMLHttpRequest();
+
 // Want to use async/await? Add the `async` keyword to your outer function/method.
 const telegas = async(msg) => {
     try {
-        const url = 'https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg=' + msg; // http://www.mysite.ru/index.php
-        // await loadPage(page3, url)
+        const uri = 'https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg=' + msg; // http://www.mysite.ru/index.php
 
-        let req44 = https.request(uri)
-            // https.get(url, (res) => {
-            //     // console.log('statusCode:', res.statusCode);
-            //     // console.log('headers:', res.headers);
+        const res = await fetch(uri);
+        if (res.ok) {
+            // const data = await res.json();
+            // console.log(data);
+        }
 
-        //     // res.on('data', (d) => {
-        //     //   process.stdout.write(d);
-        //     // });
 
-        // }).on('error', (e) => {
-        //     console.error(e);
-        // });
+        // xhr.open(
+        //     'GET',
+        //     uri,
+        //     true
+        // )
+
+        // // await loadPage(page3, url)
+
+        // // Делаем запрос пользователя с данным ID
+        // axios.get(uri)
+        //     .then(function(response) {
+        //         // обработка успешного запроса
+        //         console.log(response);
+        //     })
+        //     .catch(function(error) {
+        //         // обработка ошибки
+        //         console.log(error);
+        //     })
+        //     .then(function() {
+        //         // выполняется всегда
+        //     });
+
+
+
+        // // let req44 = https.request(uri)
+        // // https.get(url, (res) => {
+        // //     // console.log('statusCode:', res.statusCode);
+        // //     // console.log('headers:', res.headers);
+
+        // //     // res.on('data', (d) => {
+        // //     //   process.stdout.write(d);
+        // //     // });
+
+        // // }).on('error', (e) => {
+        // //     console.error(e);
+        // // });
 
     } catch (error) {
         console.error(error);
@@ -193,4 +229,4 @@ async function start() {
 // loadPage(telega, 'https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg=01 pars: старт')
 // telegas('01 pars: старт')
 
-// start()
+start()
