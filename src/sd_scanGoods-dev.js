@@ -59,7 +59,6 @@ const { priceNormalizator, onlyNumber } = require('./inin/math')
 // const request = require('request');
 // var page3 = driverConnect()
 
-
 // var xhr = new XMLHttpRequest()
 // var XMLHttpRequest = require('xhr2');
 // var xhr = new XMLHttpRequest();
@@ -67,14 +66,15 @@ const { priceNormalizator, onlyNumber } = require('./inin/math')
 // Want to use async/await? Add the `async` keyword to your outer function/method.
 const telegas = async(msg) => {
     try {
-        const uri = 'https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg=' + msg; // http://www.mysite.ru/index.php
+        const uri =
+            'https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg=' +
+            msg // http://www.mysite.ru/index.php
 
-        const res = await fetch(uri);
+        const res = await fetch(uri)
         if (res.ok) {
             // const data = await res.json();
             // console.log(data);
         }
-
 
         // xhr.open(
         //     'GET',
@@ -98,8 +98,6 @@ const telegas = async(msg) => {
         //         // выполняется всегда
         //     });
 
-
-
         // // let req44 = https.request(uri)
         // // https.get(url, (res) => {
         // //     // console.log('statusCode:', res.statusCode);
@@ -112,18 +110,18 @@ const telegas = async(msg) => {
         // // }).on('error', (e) => {
         // //     console.error(e);
         // // });
-
     } catch (error) {
-        console.error(error);
+        console.error(error)
     }
 }
 
-telegas('привет конфет')
-
 async function start() {
-
-    var page = driverConnect()
-
+    try {
+        await telegas('привет конфет')
+    } catch (error) {}
+    try {
+        var page = driverConnect()
+    } catch (error) {}
     try {
         const connection = await mysqlConnect('parser1', 'root', '123456')
 
@@ -134,7 +132,6 @@ async function start() {
             let step = 0
                 // for (let i = 1; i <= 300; i++) {
             for (let i = 1; i <= 500; i++) {
-
                 step++
                 // если всегда загружать страницу заново а не кликать по поиску и товарам
                 // step = 1
@@ -172,8 +169,10 @@ async function start() {
                     goodSearch = await searchAndGoGood(page, good, priceNormalizator)
 
                     if (goodSearch == false) {
-                        console.log('   - - - не перешли в найденный товар, не нашли, идём на след товар');
-                        // await page.sleep(5 * 1000)
+                        console.log(
+                                '   - - - не перешли в найденный товар, не нашли, идём на след товар',
+                            )
+                            // await page.sleep(5 * 1000)
                         continue
                     }
                     // else {
@@ -184,7 +183,14 @@ async function start() {
 
                 // await page.sleep(2 * 1000)
 
-                let goodParse = await SD_GoodFullParser(page, good, priceNormalizator, onlyNumber, connection, saveToDb)
+                let goodParse = await SD_GoodFullParser(
+                    page,
+                    good,
+                    priceNormalizator,
+                    onlyNumber,
+                    connection,
+                    saveToDb,
+                )
 
                 if (goodParse == false) {
                     console.error('ошибка парсинга биг товара')
@@ -200,7 +206,6 @@ async function start() {
                 // await loadPage(telega, 'https://api.uralweb.info/telegram.php?s=1&domain=parser.php-cat.com&msg=ок + ' + good.name)
                 // await loadPage(telega, 'https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg=ok ' + good.name)
                 telegas('ok ' + good.name)
-
             }
         } catch (error) {
             console.error('after SD_GetCatForScan', error)
@@ -213,17 +218,12 @@ async function start() {
         await driverExit(page3)
         console.log('')
         console.log('')
-
-
-    }
-    // ошибка подклчения к бд
-    catch (error) {
+    } catch (error) {
+        // ошибка подклчения к бд
         // await loadPage(telega, 'https://api.uralweb.info/telegram.php?s=1&domain=aa.s1.php-cat.com&msg=парсинг 1: ошибка конекта к БД')
         // await loadPage(telega, 'https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=aa.s1.php-cat.com&msg=парсинг 1: ошибка конекта к БД')
         telegas('парсинг 1: ошибка конекта к БД')
-
     }
-
 }
 
 // loadPage(telega, 'https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg=01 pars: старт')
