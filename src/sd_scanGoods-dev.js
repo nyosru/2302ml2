@@ -64,6 +64,8 @@ async function telegas(msg) {
 }
 
 
+telegas('привет конфет')
+
 
 // import fetch from 'node-fetch';
 
