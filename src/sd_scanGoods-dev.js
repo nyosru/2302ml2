@@ -50,16 +50,33 @@ const {
 
 const { priceNormalizator, onlyNumber } = require('./inin/math')
 
+// const https = require('node:https');
+
+
 
 // var http = require('http');
 // const request = require('request');
-var page3 = driverConnect()
+// var page3 = driverConnect()
 
 // Want to use async/await? Add the `async` keyword to your outer function/method.
 const telegas = async(msg) => {
     try {
         const url = 'https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg=' + msg; // http://www.mysite.ru/index.php
-        await loadPage(page3, url)
+        // await loadPage(page3, url)
+
+        let req44 = https.request(uri)
+            // https.get(url, (res) => {
+            //     // console.log('statusCode:', res.statusCode);
+            //     // console.log('headers:', res.headers);
+
+        //     // res.on('data', (d) => {
+        //     //   process.stdout.write(d);
+        //     // });
+
+        // }).on('error', (e) => {
+        //     console.error(e);
+        // });
+
     } catch (error) {
         console.error(error);
     }
@@ -80,11 +97,11 @@ async function start() {
         try {
             let step = 0
                 // for (let i = 1; i <= 300; i++) {
-            for (let i = 1; i <= 2; i++) {
+            for (let i = 1; i <= 500; i++) {
 
                 step++
                 // если всегда загружать страницу заново а не кликать по поиску и товарам
-                step = 1
+                // step = 1
 
                 // скан товаров с поиском
                 let good = await SD_getGoodForParse(connection)
