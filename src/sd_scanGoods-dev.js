@@ -50,12 +50,16 @@ const {
 
 const { priceNormalizator, onlyNumber } = require('./inin/math')
 
+
+// var http = require('http');
+// const request = require('request');
+var page3 = driverConnect()
+
 // Want to use async/await? Add the `async` keyword to your outer function/method.
 const telegas = async(msg) => {
     try {
-        const response = await axios.get('https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg=' + msg);
-        //   await loadPage(telega, 'https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg=парсинг 1: старт')
-        console.log(response);
+        const url = 'https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg=' + msg; // http://www.mysite.ru/index.php
+        await loadPage(page3, url)
     } catch (error) {
         console.error(error);
     }
