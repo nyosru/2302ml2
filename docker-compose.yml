@@ -20,26 +20,26 @@ services:
   #   networks:
   #     - selenoid
 
-  la1:
-    container_name: la1
-    build: ./web
-    restart: always
-    environment:
-      - APACHE_RUN_USER=www-data
-      # - APACHE_DOCUMENT_ROOT=/var/www/html/public
-      # - post_max_size=200M
-      # - upload_max_filesize=200M
-    volumes:
-      - ${APP_PATH_HOST}:${APP_PATH_CONTAINER}
-    ports:
-      - 8081:80
-      # - 433:433
-      # - 8081:80
-    working_dir: ${APP_PATH_CONTAINER}
-    depends_on:
-      - db
-    networks:
-      - se
+  # la1:
+  #   container_name: la1
+  #   build: ./web
+  #   restart: always
+  #   environment:
+  #     - APACHE_RUN_USER=www-data
+  #     # - APACHE_DOCUMENT_ROOT=/var/www/html/public
+  #     # - post_max_size=200M
+  #     # - upload_max_filesize=200M
+  #   volumes:
+  #     - ${APP_PATH_HOST}:${APP_PATH_CONTAINER}
+  #   ports:
+  #     - 8081:80
+  #     # - 433:433
+  #     # - 8081:80
+  #   working_dir: ${APP_PATH_CONTAINER}
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - se
 
 
   # p1:
