@@ -14,18 +14,18 @@
 
 // // базовые функции драйвера
 // try {
-//     const {
-//         connect: driverConnect,
-//         exit: driverExit,
-//         loadPage,
-//         creatScreenshot,
-//         // скрол вниз
-//         pageScrollToBottom,
-//         clickCloseUpModal,
-//     } = require('./inin/driver')
-// } catch (error) {
-//     console.log('big5 err', error)
-// }
+const {
+    connect: driverConnect,
+    exit: driverExit,
+    loadPage,
+    creatScreenshot,
+    // скрол вниз
+    pageScrollToBottom,
+    clickCloseUpModal,
+} = require('./inin/driver')
+    // } catch (error) {
+    //     console.log('big5 err', error)
+    // }
 
 // // драйвер, работа с SD
 // try {
@@ -74,20 +74,32 @@
 //     console.log('big err', error)
 // }
 
-const telegas = async(msg) => {
-    try {
-        const uri =
-            'https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg=' +
-            msg // http://www.mysite.ru/index.php
+// index.js
+// import './inin/fetch-polyfill'
+// import fetch2 from 'node-fetch';
 
-        const res = await fetch(uri)
-        if (res.ok) {
-            // const data = await res.json();
-            // console.log(data);
-        }
-    } catch (error) {
-        console.error(error)
-    }
+
+var page2 = driverConnect()
+
+const telegas = async(msg) => {
+    loadPage(page2, 'https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg=парсинг 1: старт ' + msg)
+
+    //     try {
+
+    //         const uri =
+    //             'https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg=' +
+    //             msg // http://www.mysite.ru/index.php
+
+    //         // const response = await fetch('https://github.com/');
+
+    //         const res = await fetch(uri)
+    //         if (res.ok) {
+    //             // const data = await res.json();
+    //             // console.log(data);
+    //         }
+    //     } catch (error) {
+    //         console.error(error)
+    //     }
 }
 
 
