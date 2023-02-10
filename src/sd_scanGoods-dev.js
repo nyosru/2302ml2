@@ -6,7 +6,12 @@ try {
         saveToDb,
         //
     } = require('./inin/sql')
-        // базовые функции драйвера
+} catch (error) {
+    console.log('big6 err', error)
+}
+
+// базовые функции драйвера
+try {
     const {
         connect: driverConnect,
         exit: driverExit,
@@ -16,7 +21,12 @@ try {
         pageScrollToBottom,
         clickCloseUpModal,
     } = require('./inin/driver')
-        // драйвер, работа с SD
+} catch (error) {
+    console.log('big5 err', error)
+}
+
+// драйвер, работа с SD
+try {
     const {
         // закрыть плашку подтверждения города
         UpModalCityClose,
@@ -32,18 +42,31 @@ try {
         SDGoToCatNav,
         SDGoToCatNavFast,
     } = require('./inin/driver')
+} catch (error) {
+    console.log('big4 err', error)
+}
 
-    // скан товаров
+// скан товаров
+try {
     const {
         // выборка что парсить
         SD_getGoodForParse,
     } = require('./inin/sql')
+} catch (error) {
+    console.log('big3 err', error)
+}
+
+try {
     const {
         searchAndGoGood,
         checkNowGood,
         SD_GoodFullParser,
     } = require('./inin/driver')
+} catch (error) {
+    console.log('big2 err', error)
+}
 
+try {
     const { priceNormalizator, onlyNumber } = require('./inin/math')
 } catch (error) {
     console.log('big err', error)
@@ -68,10 +91,15 @@ const telegas = async(msg) => {
 async function start() {
     try {
         await telegas('привет конфет')
-    } catch (error) {}
+    } catch (error) {
+        console.log('telega1 err ', error)
+    }
     try {
         var page = driverConnect()
-    } catch (error) {}
+    } catch (error) {
+        console.log('var page = driverConnect() err', error)
+    }
+
     try {
         const connection = await mysqlConnect('parser1', 'root', '123456')
 

