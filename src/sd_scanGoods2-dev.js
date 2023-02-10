@@ -14,18 +14,18 @@
 
 // // базовые функции драйвера
 // try {
-const {
-    connect: driverConnect,
-    exit: driverExit,
-    loadPage,
-    creatScreenshot,
-    // скрол вниз
-    pageScrollToBottom,
-    clickCloseUpModal,
-} = require('./inin/driver')
-    // } catch (error) {
-    //     console.log('big5 err', error)
-    // }
+// const {
+//     connect: driverConnect,
+//     exit: driverExit,
+//     loadPage,
+//     creatScreenshot,
+//     // скрол вниз
+//     pageScrollToBottom,
+//     clickCloseUpModal,
+// } = require('./inin/driver')
+// } catch (error) {
+//     console.log('big5 err', error)
+// }
 
 // // драйвер, работа с SD
 // try {
@@ -78,32 +78,28 @@ const {
 // import './inin/fetch-polyfill'
 // import fetch2 from 'node-fetch';
 
-
-var page2 = driverConnect()
+// var page2 = driverConnect()
 
 const telegas = async(msg) => {
-    loadPage(page2, 'https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg=парсинг 1: старт ' + msg)
+    // loadPage(page2, 'https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg=парсинг 1: старт ' + msg)
 
     //     try {
 
-    //         const uri =
-    //             'https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg=' +
-    //             msg // http://www.mysite.ru/index.php
+    const uri =
+        'https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg=' +
+        msg // http://www.mysite.ru/index.php
 
     //         // const response = await fetch('https://github.com/');
 
-    //         const res = await fetch(uri)
-    //         if (res.ok) {
-    //             // const data = await res.json();
-    //             // console.log(data);
-    //         }
-    //     } catch (error) {
-    //         console.error(error)
-    //     }
+    const res = await fetch(uri)
+        //         if (res.ok) {
+        //             // const data = await res.json();
+        //             // console.log(data);
+        //         }
+        //     } catch (error) {
+        //         console.error(error)
+        //     }
 }
-
-
-
 
 // const express = require('express'),
 //     app = express(),
@@ -132,15 +128,10 @@ const telegas = async(msg) => {
 // //   console.log(`Server listens http://${host}:${port}`)
 // // )
 
-
-
-
 // const https = require('https');
 // // let url = 'https://script.google.com/macros/s/AKfycbwxPZTx1yOVGmVADtbvHScQqplz49knom4t_fCTHliQx9oaN4I/exec?p=123&p_1=11&p_2=22&p_3=33&p_4=44&p_5=55';
 
-
 // function doRequest(msg) {
-
 
 //     let url =
 //         'https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg=' + msg
@@ -159,11 +150,6 @@ const telegas = async(msg) => {
 // }
 
 // doRequest('тест манифест');
-
-
-
-
-
 
 async function start() {
     //     try {
