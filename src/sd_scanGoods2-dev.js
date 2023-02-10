@@ -1,3 +1,5 @@
+'use strict'
+
 // try {
 //     const {
 //         connect: mysqlConnect,
@@ -87,6 +89,69 @@ const telegas = async(msg) => {
         console.error(error)
     }
 }
+
+
+
+
+// const express = require('express'),
+//     app = express(),
+//     request = require('request')
+
+// const host = '127.0.0.1'
+// const port = 7000
+
+// // app.get('/', (req, res) => {
+
+// let msg = 'Привет водопровод'
+// let url =
+//     'https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg=' + msg
+
+// request(
+//         // 'http://example.com/api',
+//         url,
+//         (err, response, body) => {
+//             if (err) return res.status(500).send({ message: err })
+//             return res.send(body)
+//         }
+//     )
+//     // })
+
+// // app.listen(port, host, () =>
+// //   console.log(`Server listens http://${host}:${port}`)
+// // )
+
+
+
+
+// const https = require('https');
+// // let url = 'https://script.google.com/macros/s/AKfycbwxPZTx1yOVGmVADtbvHScQqplz49knom4t_fCTHliQx9oaN4I/exec?p=123&p_1=11&p_2=22&p_3=33&p_4=44&p_5=55';
+
+
+// function doRequest(msg) {
+
+
+//     let url =
+//         'https://api.uralweb.info/telegram.php?s=1&token=6272013314:AAE87uoGgRkLaKnFMuW2zkUqlAeJ_e9YyUg&domain=parser.php-cat.com&msg=' + msg
+
+//     https.get(url, (res) => {
+//         if (res.statusCode >= 300 && res.statusCode <= 400 && res.headers.location) {
+//             doRequest(res.headers.location);
+//         }
+//         res.on('data', (d) => {
+//             process.stdout.write(d);
+//         });
+
+//     }).on('error', (e) => {
+//         console.error(e);
+//     });
+// }
+
+// doRequest('тест манифест');
+
+
+
+
+
 
 async function start() {
     //     try {
